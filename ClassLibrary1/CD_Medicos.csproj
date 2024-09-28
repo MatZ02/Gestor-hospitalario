@@ -93,6 +93,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CD_Atencion.cs" />
     <Compile Include="CD_Conexion.cs" />
     <Compile Include="CD_Pacientes.cs" />
     <Compile Include="CD_Medicos.cs" />

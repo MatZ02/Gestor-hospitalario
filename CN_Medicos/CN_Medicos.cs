@@ -1,4 +1,5 @@
 ﻿using ClassLibrary1;
+using System.Collections.Generic;
 
 namespace CN_Medicos
 {
@@ -80,10 +81,10 @@ namespace CN_Medicos
             };
             return medico;
         }
-        public CD_Medicos.Medicos BuscarMedicoPorCodigo(int codigoMedico)
+
+        public List<CD_Medicos.Medicos> MostrarMedicos()
         {
-            CD_Medicos.Medicos medico = DatosMedicos.BuscarMedicos(codigoMedico);
-            return medico;
+            return DatosMedicos.ObtenerMedicos();
         }
 
         public CD_Medicos.Medicos ModificarMedico(int codigo, string nombre, string apellido, string especialidad, string consultorio)
@@ -108,14 +109,6 @@ namespace CN_Medicos
             };
             return medico;
         }
-
-
-
-
-
-
-
-
 
     }
 }

@@ -40,19 +40,19 @@ namespace ClassLibrary1
 
             }
         }
-        public Medicos BuscarMedicos(int codigoMedico)
+        public List<Medicos> ObtenerMedicos()
         {
             try
             {
-                sql = "SELECT * FROM Medicos WHERE CodigoMedico = " + codigoMedico + ";";
+                List<Medicos> listaMedicos = new List<Medicos>();
+                sql = "SELECT * FROM Medicos";
                 comando = new MySqlCommand(sql);
                 comando.Connection = Conexion.AbrirConexion();
                 lector = comando.ExecuteReader();
-                Medicos medico = null;
 
-                if (lector.Read())
+                while (lector.Read())
                 {
-                    medico = new Medicos
+                    Medicos medico = new Medicos
                     {
                         Codigo = lector.GetInt32("Codigo"),
                         Nombre = lector.GetString("Nombre"),
@@ -60,15 +60,19 @@ namespace ClassLibrary1
                         Especialidad = lector.GetString("Especialidad"),
                         Consultorio = lector.GetString("Consultorio")
                     };
+
+                    listaMedicos.Add(medico);
                 }
+
                 Conexion.CerrarConexion();
-                return medico;
+                return listaMedicos;
             }
             catch (Exception ex)
             {
                 return null;
             }
         }
+
         public void EliminarMedicos(int codigoMedico)
         {
             try
