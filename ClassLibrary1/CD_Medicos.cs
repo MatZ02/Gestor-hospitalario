@@ -84,11 +84,11 @@ namespace ClassLibrary1
 
             }
         }
-        public void ActualizarPacientes(int codigo, string nombre, string apellido, int edad, string genero, string eps)
+        public void ActualizarMedicos(int codigo, string nombre, string apellido, string especialidad, string consultorio)
         {
             try
             {
-                sql = "update Pacientes set Nombre = " + nombre + ", Apellido = " + apellido + ", Edad = " + edad + ", Genero = " + genero + ", Eps = " + eps + " where Codigo = " + codigo;
+                sql = "update Medicos set Nombre = " + nombre + ", Apellido = " + apellido + ", Especialidad = " + especialidad + ", Consultorio = " + consultorio + " where Codigo = " + codigo;
                 comando = new MySqlCommand(sql);
                 comando.Connection = Conexion.AbrirConexion();
                 comando.ExecuteNonQuery();
@@ -100,5 +100,4 @@ namespace ClassLibrary1
             }
         }
     }
-}
 }
