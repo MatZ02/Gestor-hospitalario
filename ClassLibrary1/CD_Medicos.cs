@@ -21,22 +21,7 @@ namespace ClassLibrary1
         private MySqlDataReader lector = null;
         private MySqlCommand comando = null;
 
-        public void IngresarMedicos(int codigo, string nombre, string apellido, string especialidad, string consultorio)
-        {
-            try
-            {
-                sql = "insert into medicos values(" + codigo + "," + nombre + "," + apellido + "," + especialidad + "," + consultorio + ")";
-                comando = new MySqlCommand(sql);
-                comando.Connection = Conexion.AbrirConexion();
-                comando.CommandText = sql;
-                comando.ExecuteNonQuery();
-                Conexion.CerrarConexion();
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
+        
         public List<Medicos> ObtenerMedicos()
         {
             try
@@ -67,37 +52,6 @@ namespace ClassLibrary1
             catch (Exception ex)
             {
                 return null;
-            }
-        }
-
-        public void EliminarMedicos(int codigoMedico)
-        {
-            try
-            {
-                sql = "delete from Medicos where CodigoMedico = " + codigoMedico;
-                comando = new MySqlCommand(sql);
-                comando.Connection = Conexion.AbrirConexion();
-                comando.ExecuteNonQuery();
-                Conexion.CerrarConexion();
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-        public void ActualizarMedicos(int codigo, string nombre, string apellido, string especialidad, string consultorio)
-        {
-            try
-            {
-                sql = "update Medicos set Nombre = " + nombre + ", Apellido = " + apellido + ", Especialidad = " + especialidad + ", Consultorio = " + consultorio + " where Codigo = " + codigo;
-                comando = new MySqlCommand(sql);
-                comando.Connection = Conexion.AbrirConexion();
-                comando.ExecuteNonQuery();
-                Conexion.CerrarConexion();
-            }
-            catch (Exception ex)
-            {
-
             }
         }
     }

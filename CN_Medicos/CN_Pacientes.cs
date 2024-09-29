@@ -1,4 +1,6 @@
 ﻿using ClassLibrary1;
+using System;
+using System.Collections.Generic;
 
 namespace CN_Medicos
 {
@@ -17,14 +19,14 @@ namespace CN_Medicos
         }
 
 
-        public CD_Pacientes.Pacientes BuscarPacientePorCodigo(int codigoPaciente)
+        public CD_Pacientes.Pacientes BuscarPaciente(int codigoPaciente)
         {
-            CD_Pacientes.Pacientes paciente = DatosPacientes.BuscarPacientes(codigoPaciente);
+            CD_Pacientes.Pacientes paciente = DatosPacientes.BuscarPacientePorCodigo(codigoPaciente);
             return paciente;
         }
         public CD_Pacientes.Pacientes IngresarPaciente(int codigo, string nombre, string apellido, int edad, string genero, string eps)
         {
-            DatosPacientes.IngresarPacientes(codigo, nombre, apellido, edad, genero, eps);
+            DatosPacientes.IngresarPaciente(codigo, nombre, apellido, edad, genero, eps);
             CD_Pacientes.Pacientes paciente = new CD_Pacientes.Pacientes
             {
                 Codigo = codigo,
@@ -37,19 +39,16 @@ namespace CN_Medicos
             return paciente;
         }
 
-        public CD_Pacientes.Pacientes ModificarPaciente(int codigo, string nombre, string apellido, int edad, string genero, string eps)
+        public void ActualizarPaciente(int codigo, string nombre, string apellido, int edad, string genero, string eps)
         {
-            DatosPacientes.ActualizarPacientes(codigo, nombre, apellido, edad, genero, eps);
-            CD_Pacientes.Pacientes paciente = new CD_Pacientes.Pacientes
+            try
             {
-                Codigo = codigo,
-                Nombre = nombre,
-                Apellido = apellido,
-                Edad = edad,
-                Genero = genero,
-                Eps = eps
-            };
-            return paciente;
+                DatosPacientes.ActualizarPacientes(codigo, nombre, apellido, edad, genero, eps);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar paciente: " + ex.Message);
+            }
         }
         public CD_Pacientes.Pacientes EliminarPaciente(int codigo)
         {
@@ -59,6 +58,11 @@ namespace CN_Medicos
                 Codigo = codigo
             };
             return paciente;
+        }
+
+        public List<CD_Pacientes.Pacientes> ListarPacientes()
+        {
+            return DatosPacientes.ListarPacientes();
         }
     }
 }

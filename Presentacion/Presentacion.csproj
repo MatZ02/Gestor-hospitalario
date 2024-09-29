@@ -98,6 +98,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActualizarPacientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActualizarPacientes.Designer.cs">
+      <DependentUpon>ActualizarPacientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IngresarPacientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IngresarPacientes.Designer.cs">
+      <DependentUpon>IngresarPacientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Lobby.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +118,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VistaPacientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaPacientes.Designer.cs">
+      <DependentUpon>VistaPacientes.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ActualizarPacientes.resx">
+      <DependentUpon>ActualizarPacientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IngresarPacientes.resx">
+      <DependentUpon>IngresarPacientes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Lobby.resx">
       <DependentUpon>Lobby.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,6 +142,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="VistaPacientes.resx">
+      <DependentUpon>VistaPacientes.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -131,6 +158,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\CD_Medicos.csproj">
+      <Project>{5A343BFF-AF16-43B2-AAD2-9B50F04DA1D5}</Project>
+      <Name>CD_Medicos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CN_Medicos\CN_Medicos.csproj">
+      <Project>{4ffaaf7e-cdb1-4caa-9bbd-3afd2b57fecb}</Project>
+      <Name>CN_Medicos</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

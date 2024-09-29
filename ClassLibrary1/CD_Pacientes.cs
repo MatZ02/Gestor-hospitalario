@@ -1,5 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
+using static ClassLibrary1.CD_Pacientes;
 
 namespace ClassLibrary1
 {
@@ -21,58 +23,73 @@ namespace ClassLibrary1
         private MySqlDataReader lector = null;
         private MySqlCommand comando = null;
 
-        public void IngresarPacientes(int codigo, string nombre, string apellido, int edad, string genero, string eps)
+        public void IngresarPaciente(int codigo, string nombre, string apellido, int edad, string genero, string eps)
         {
             try
             {
-                sql = "insert into pacientes values(" + codigo + "," + nombre + "," + apellido + "," + edad + "," + genero + "," + eps + ")";
+                sql = "INSERT INTO pacientes (CodigoPaciente, Nombre, Apellido, Edad, Genero, Eps) VALUES (@codigo, @nombre, @apellido, @edad, @genero, @eps)";
                 comando = new MySqlCommand(sql);
                 comando.Connection = Conexion.AbrirConexion();
-                comando.CommandText = sql;
+
+                comando.Parameters.AddWithValue("@codigo", codigo);
+                comando.Parameters.AddWithValue("@nombre", nombre);
+                comando.Parameters.AddWithValue("@apellido", apellido);
+                comando.Parameters.AddWithValue("@edad", edad);
+                comando.Parameters.AddWithValue("@genero", genero);
+                comando.Parameters.AddWithValue("@eps", eps);
+
                 comando.ExecuteNonQuery();
-                Conexion.CerrarConexion();
             }
             catch (Exception ex)
             {
-
+                // Manejo de errores
+                throw new Exception("Error al ingresar paciente: " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
             }
         }
-        public Pacientes BuscarPacientes(int codigoPaciente)
+        public Pacientes BuscarPacientePorCodigo(int codigo)
         {
+            Pacientes paciente = null;
             try
             {
-                sql = "SELECT * FROM Pacientes WHERE CodigoPaciente = " + codigoPaciente + ";";
+                sql = "SELECT * FROM pacientes WHERE CodigoPaciente = @codigo";
                 comando = new MySqlCommand(sql);
                 comando.Connection = Conexion.AbrirConexion();
-                lector = comando.ExecuteReader();
-                Pacientes paciente = null;
+                comando.Parameters.AddWithValue("@codigo", codigo);
 
-                if (lector.Read())
+                MySqlDataReader reader = comando.ExecuteReader();
+                if (reader.Read())
                 {
                     paciente = new Pacientes
                     {
-                        Codigo = lector.GetInt32("Codigo"),
-                        Nombre = lector.GetString("Nombre"),
-                        Apellido = lector.GetString("Apellido"),
-                        Edad = lector.GetInt32("Edad"),
-                        Genero = lector.GetString("Genero"),
-                        Eps = lector.GetString("Eps")
+                        Codigo = reader.GetInt32("CodigoPaciente"),
+                        Nombre = reader.GetString("Nombre"),
+                        Apellido = reader.GetString("Apellido"),
+                        Edad = reader.GetInt32("Edad"),
+                        Genero = reader.GetString("Genero"),
+                        Eps = reader.GetString("Eps")
                     };
                 }
-                Conexion.CerrarConexion();
-                return paciente;
             }
             catch (Exception ex)
             {
-                return null;
+                throw new Exception("Error al buscar paciente: " + ex.Message);
             }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+            return paciente;
         }
 
         public void EliminarPacientes(int codigoPaciente)
         {
             try
             {
-                sql = "delete from Pacientes where CodigoPaciente = " + codigoPaciente;
+                sql = "delete from pacientes where CodigoPaciente = " + codigoPaciente;
                 comando = new MySqlCommand(sql);
                 comando.Connection = Conexion.AbrirConexion();
                 comando.ExecuteNonQuery();
@@ -87,16 +104,61 @@ namespace ClassLibrary1
         {
             try
             {
-                sql = "update Pacientes set Nombre = " + nombre + ", Apellido = " + apellido + ", Edad = " + edad + ", Genero = " + genero + ", Eps = " + eps + " where Codigo = " + codigo;
-                comando = new MySqlCommand(sql);
-                comando.Connection = Conexion.AbrirConexion();
+                MySqlConnection conexion = Conexion.AbrirConexion();
+
+                string sql = "UPDATE pacientes SET Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Genero = @Genero, Eps = @Eps WHERE CodigoPaciente = @CodigoPaciente";
+
+                MySqlCommand comando = new MySqlCommand(sql, conexion);
+
+                comando.Parameters.AddWithValue("@CodigoPaciente", codigo);
+                comando.Parameters.AddWithValue("@Nombre", nombre);
+                comando.Parameters.AddWithValue("@Apellido", apellido);
+                comando.Parameters.AddWithValue("@Edad", edad);
+                comando.Parameters.AddWithValue("@Genero", genero);
+                comando.Parameters.AddWithValue("@Eps", eps);
+
                 comando.ExecuteNonQuery();
+
                 Conexion.CerrarConexion();
             }
             catch (Exception ex)
             {
-
+                throw new Exception("Error al actualizar el paciente: " + ex.Message);
             }
+        }
+        public List<Pacientes> ListarPacientes()
+        {
+            List<Pacientes> listaPacientes = new List<Pacientes>();
+            try
+            {
+                sql = "SELECT * FROM pacientes";
+                comando = new MySqlCommand(sql);
+                comando.Connection = Conexion.AbrirConexion();
+
+                lector = comando.ExecuteReader();
+                while (lector.Read())
+                {
+                    Pacientes paciente = new Pacientes
+                    {
+                        Codigo = lector.GetInt32("CodigoPaciente"),
+                        Nombre = lector.GetString("Nombre"),
+                        Apellido = lector.GetString("Apellido"),
+                        Edad = lector.GetInt32("Edad"),
+                        Genero = lector.GetString("Genero"),
+                        Eps = lector.GetString("Eps")
+                    };
+                    listaPacientes.Add(paciente);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar pacientes: " + ex.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+            return listaPacientes;
         }
     }
 }

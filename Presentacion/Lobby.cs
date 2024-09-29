@@ -16,5 +16,23 @@ namespace Presentacion
         {
             InitializeComponent();
         }
+
+        private void Lobby_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            VistaPacientes frmPacientes = new VistaPacientes();
+            this.Hide();
+            frmPacientes.Show();
+            frmPacientes.FormClosed += (s, args) => this.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

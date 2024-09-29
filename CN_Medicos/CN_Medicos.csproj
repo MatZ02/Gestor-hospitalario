@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CN_Atencion.cs" />
+    <Compile Include="CN_Facturacion.cs" />
     <Compile Include="CN_HistorialMedico.cs" />
     <Compile Include="CN_Medicos.cs" />
     <Compile Include="CN_Pacientes.cs" />
@@ -103,10 +104,6 @@
     <ProjectReference Include="..\ClassLibrary1\CD_Medicos.csproj">
       <Project>{5a343bff-af16-43b2-aad2-9b50f04da1d5}</Project>
       <Name>CD_Medicos</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Presentacion\Presentacion.csproj">
-      <Project>{07f6f5bc-261b-4550-a03e-4259be274e5b}</Project>
-      <Name>Presentacion</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
