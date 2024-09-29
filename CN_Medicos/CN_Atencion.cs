@@ -1,9 +1,5 @@
 ﻿using ClassLibrary1;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static ClassLibrary1.CD_Medicos;
 using static ClassLibrary1.CD_Pacientes;
 

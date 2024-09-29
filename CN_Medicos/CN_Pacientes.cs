@@ -1,5 +1,4 @@
 ﻿using ClassLibrary1;
-using System.Collections.Generic;
 
 namespace CN_Medicos
 {
@@ -16,7 +15,7 @@ namespace CN_Medicos
             public string Genero { get; set; }
             public string Eps { get; set; }
         }
-        
+
 
         public CD_Pacientes.Pacientes BuscarPacientePorCodigo(int codigoPaciente)
         {

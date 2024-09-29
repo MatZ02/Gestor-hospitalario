@@ -1,7 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Asn1.CryptoPro;
 using System;
-using System.Collections.Generic;
 
 namespace ClassLibrary1
 {
@@ -13,7 +11,7 @@ namespace ClassLibrary1
             public string Nombre { get; set; }
             public string Apellido { get; set; }
             public int Edad { get; set; }
-            public string Genero{ get; set; }
+            public string Genero { get; set; }
             public string Eps { get; set; }
         }
 
@@ -27,23 +25,23 @@ namespace ClassLibrary1
         {
             try
             {
-                sql = "insert into pacientes values(" + codigo + "," + nombre + "," + apellido + "," + edad + "," + genero + "," + eps+")";
+                sql = "insert into pacientes values(" + codigo + "," + nombre + "," + apellido + "," + edad + "," + genero + "," + eps + ")";
                 comando = new MySqlCommand(sql);
                 comando.Connection = Conexion.AbrirConexion();
                 comando.CommandText = sql;
                 comando.ExecuteNonQuery();
                 Conexion.CerrarConexion();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                
+
             }
         }
         public Pacientes BuscarPacientes(int codigoPaciente)
         {
             try
             {
-                sql = "SELECT * FROM Pacientes WHERE CodigoPaciente = "+ codigoPaciente+";";
+                sql = "SELECT * FROM Pacientes WHERE CodigoPaciente = " + codigoPaciente + ";";
                 comando = new MySqlCommand(sql);
                 comando.Connection = Conexion.AbrirConexion();
                 lector = comando.ExecuteReader();
