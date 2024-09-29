@@ -97,9 +97,11 @@
     <Compile Include="CD_Conexion.cs" />
     <Compile Include="CD_Pacientes.cs" />
     <Compile Include="CD_Medicos.cs" />
+    <Compile Include="CD_HistorialMedico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

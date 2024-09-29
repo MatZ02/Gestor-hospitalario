@@ -37,5 +37,89 @@ namespace ClassLibrary1
                 }
             }
         }
+
+        public void IngresarAtencion(int codigo, DateTime fecha, string TipoConsulta, Pacientes paciente, Medicos medico)
+        {
+            using (var conexion = new CD_Conexion().AbrirConexion())
+            {
+                try
+                {
+                    sql = "insert into Atencion values(" + codigo + "," + fecha + "," + TipoConsulta + "," + paciente + "," + medico + ")";
+                    comando = new MySqlCommand(sql);
+                    comando.Connection = Conexion.AbrirConexion();
+                    comando.ExecuteNonQuery();
+                    Conexion.CerrarConexion();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+        }
+        public Atencion BuscarAtencion(int codigoAtencion)
+        {
+            using (var conexion = new CD_Conexion().AbrirConexion())
+            {
+                try
+                {
+                    sql = "SELECT * FROM Atencion WHERE CodigoAtencion = " + codigoAtencion + ";";
+                    comando = new MySqlCommand(sql);
+                    comando.Connection = Conexion.AbrirConexion();
+                    lector = comando.ExecuteReader();
+                    Atencion atencion = null;
+
+                    if (lector.Read())
+                    {
+                        atencion = new Atencion
+                        {
+                            Codigo = lector.GetInt32("Codigo"),
+                            Fecha = lector.GetDateTime("Fecha"),
+                            TipoConsulta = lector.GetString("TipoConsulta"),
+                            Paciente = new Pacientes
+                            {
+                                Codigo = lector.GetInt32("CodigoPaciente"),
+                                Nombre = lector.GetString("Nombre"),
+                                Apellido = lector.GetString("Apellido"),
+                                Edad = lector.GetInt32("Edad"),
+                                Genero = lector.GetString("Genero"),
+                                Eps = lector.GetString("Eps")
+                            },
+                            Medico = new Medicos
+                            {
+                                Codigo = lector.GetInt32("CodigoMedico"),
+                                Nombre = lector.GetString("Nombre"),
+                                Apellido = lector.GetString("Apellido"),
+                                Especialidad = lector.GetString("Especialidad"),
+                                Consultorio = lector.GetString("Consultorio")
+                            }
+                        };
+                    }
+                    return atencion;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public void EliminarAtencion(int codigoAtencion)
+        {
+            using (var conexion = new CD_Conexion().AbrirConexion())
+            {
+                try
+                {
+                    sql = "delete from Atencion where CodigoAtencion = " + codigoAtencion;
+                    comando = new MySqlCommand(sql);
+                    comando.Connection = Conexion.AbrirConexion();
+                    comando.ExecuteNonQuery();
+                    Conexion.CerrarConexion();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+        }
     }
 }
