@@ -25,7 +25,7 @@ namespace ClassLibrary1
             {
                 try
                 {
-                    sql = "update Medicos set codigo = " + codigo + ", fecha = " + fecha + ", Tipo_Consulta = " + TipoConsulta + ", CodigoPacientes = " + paciente + ", CodigoMedico = " + medico + "where Codigo = " + codigo;
+                    sql = "update medicos set codigo = " + codigo + ", fecha = " + fecha + ", Tipo_Consulta = " + TipoConsulta + ", CodigoPacientes = " + paciente + ", CodigoMedico = " + medico + "where Codigo = " + codigo;
                     comando = new MySqlCommand(sql);
                     comando.Connection = Conexion.AbrirConexion();
                     comando.ExecuteNonQuery();
@@ -44,7 +44,7 @@ namespace ClassLibrary1
             {
                 using (MySqlConnection conexion = Conexion.AbrirConexion())
                 {
-                    string sql = "INSERT INTO Atencion (CodigoAtencion, Fecha, TipoConsulta, CodigoPaciente, CodigoMedico) " +
+                    string sql = "INSERT INTO atencion (CodigoAtencion, Fecha, TipoConsulta, CodigoPaciente, CodigoMedico) " +
                                  "VALUES (@CodigoAtencion, @Fecha, @TipoConsulta, @CodigoPaciente, @CodigoMedico)";
 
                     using (MySqlCommand comando = new MySqlCommand(sql, conexion))
@@ -72,7 +72,7 @@ namespace ClassLibrary1
             {
                 try
                 {
-                    sql = "SELECT * FROM Atencion WHERE CodigoAtencion = " + codigoAtencion + ";";
+                    sql = "SELECT * FROM atencion WHERE CodigoAtencion = " + codigoAtencion + ";";
                     comando = new MySqlCommand(sql);
                     comando.Connection = Conexion.AbrirConexion();
                     lector = comando.ExecuteReader();
@@ -119,7 +119,7 @@ namespace ClassLibrary1
             {
                 try
                 {
-                    sql = "delete from Atencion where CodigoAtencion = " + codigoAtencion;
+                    sql = "delete from atencion where CodigoAtencion = " + codigoAtencion;
                     comando = new MySqlCommand(sql);
                     comando.Connection = Conexion.AbrirConexion();
                     comando.ExecuteNonQuery();

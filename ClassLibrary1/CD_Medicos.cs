@@ -25,7 +25,7 @@ namespace ClassLibrary1
             try
             {
                 List<Medicos> listaMedicos = new List<Medicos>();
-                sql = "SELECT * FROM Medicos";
+                sql = "SELECT * FROM medicos";
                 comando = new MySqlCommand(sql);
                 comando.Connection = Conexion.AbrirConexion();
                 lector = comando.ExecuteReader();
@@ -53,13 +53,13 @@ namespace ClassLibrary1
             }
         }
 
-        public CD_Medicos.Medicos BuscarMedicoPorCodigo(int codigoMedico)
+        public CD_Medicos.Medicos BuscarMedicoPorCodigo(int codigo)
         {
             try
             {
-                string sql = "SELECT * FROM Medicos WHERE CodigoMedico = @CodigoMedico";
+                string sql = "SELECT * FROM medicos WHERE CodigoMedico = @CodigoMedico";
                 MySqlCommand comando = new MySqlCommand(sql, Conexion.AbrirConexion());
-                comando.Parameters.AddWithValue("@CodigoMedico", codigoMedico);
+                comando.Parameters.AddWithValue("@CodigoMedico", codigo);
 
                 MySqlDataReader lector = comando.ExecuteReader();
                 if (lector.Read())
