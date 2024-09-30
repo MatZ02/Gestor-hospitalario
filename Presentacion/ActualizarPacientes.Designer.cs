@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.ListaPacientes = new System.Windows.Forms.DataGridView();
             this.TxtEps = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.TxtGenero = new System.Windows.Forms.TextBox();
@@ -44,13 +44,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.BtnRegresar = new System.Windows.Forms.Button();
             this.BtnActualizarPacientes = new System.Windows.Forms.Button();
-            this.ListaPacientes = new System.Windows.Forms.DataGridView();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Edad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Genero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label2 = new System.Windows.Forms.Label();
             this.Eps = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Genero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Edad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListaPacientes)).BeginInit();
             this.SuspendLayout();
@@ -80,16 +80,20 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             // 
-            // label2
+            // ListaPacientes
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(69)))), ((int)(((byte)(96)))));
-            this.label2.Location = new System.Drawing.Point(263, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(196, 46);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Pacientes";
+            this.ListaPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ListaPacientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Codigo,
+            this.Nombre,
+            this.Apellido,
+            this.Edad,
+            this.Genero,
+            this.Eps});
+            this.ListaPacientes.Location = new System.Drawing.Point(336, 66);
+            this.ListaPacientes.Name = "ListaPacientes";
+            this.ListaPacientes.Size = new System.Drawing.Size(357, 337);
+            this.ListaPacientes.TabIndex = 31;
             // 
             // TxtEps
             // 
@@ -219,50 +223,46 @@
             this.BtnActualizarPacientes.UseVisualStyleBackColor = true;
             this.BtnActualizarPacientes.Click += new System.EventHandler(this.BtnActualizarPacientes_Click);
             // 
-            // ListaPacientes
+            // label2
             // 
-            this.ListaPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ListaPacientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Codigo,
-            this.Nombre,
-            this.Apellido,
-            this.Edad,
-            this.Genero,
-            this.Eps});
-            this.ListaPacientes.Location = new System.Drawing.Point(336, 66);
-            this.ListaPacientes.Name = "ListaPacientes";
-            this.ListaPacientes.Size = new System.Drawing.Size(357, 337);
-            this.ListaPacientes.TabIndex = 31;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(69)))), ((int)(((byte)(96)))));
+            this.label2.Location = new System.Drawing.Point(263, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(196, 46);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Pacientes";
             // 
-            // Codigo
+            // Eps
             // 
-            this.Codigo.HeaderText = "Codigo";
-            this.Codigo.Name = "Codigo";
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            // 
-            // Apellido
-            // 
-            this.Apellido.HeaderText = "Apellido";
-            this.Apellido.Name = "Apellido";
-            // 
-            // Edad
-            // 
-            this.Edad.HeaderText = "Edad";
-            this.Edad.Name = "Edad";
+            this.Eps.HeaderText = "Eps";
+            this.Eps.Name = "Eps";
             // 
             // Genero
             // 
             this.Genero.HeaderText = "Genero";
             this.Genero.Name = "Genero";
             // 
-            // Eps
+            // Edad
             // 
-            this.Eps.HeaderText = "Eps";
-            this.Eps.Name = "Eps";
+            this.Edad.HeaderText = "Edad";
+            this.Edad.Name = "Edad";
+            // 
+            // Apellido
+            // 
+            this.Apellido.HeaderText = "Apellido";
+            this.Apellido.Name = "Apellido";
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            // 
+            // Codigo
+            // 
+            this.Codigo.HeaderText = "Codigo";
+            this.Codigo.Name = "Codigo";
             // 
             // ActualizarPacientes
             // 

@@ -37,5 +37,18 @@ namespace Presentacion
             fmrActualizarPacientes.Show();
             fmrActualizarPacientes.FormClosed += (s, args) => this.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            EliminarPaciente fmrEliminarPaciente = new EliminarPaciente();
+            this.Hide();
+            fmrEliminarPaciente.Show();
+            fmrEliminarPaciente.FormClosed += (s, args) => this.Show();
+        }
     }
 }

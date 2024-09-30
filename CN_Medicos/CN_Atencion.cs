@@ -22,26 +22,12 @@ namespace CN_Medicos
             }
         }
 
-        public CD_Atencion.Atencion IngresarAtencion(int codigo, DateTime fecha, string TipoConsulta, Pacientes paciente, Medicos medico)
+        public void IngresarAtencion(int codigoAtencion, DateTime fecha, string tipoConsulta, Pacientes paciente, Medicos medico)
         {
-            try
-            {
-                DatosAtencion.IngresarAtencion(codigo, fecha, TipoConsulta, paciente, medico);
-                CD_Atencion.Atencion atencion = new CD_Atencion.Atencion
-                {
-                    Codigo = codigo,
-                    Fecha = fecha,
-                    TipoConsulta = TipoConsulta,
-                    Paciente = paciente,
-                    Medico = medico
-                };
-                return atencion;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al ingresar la atención: " + ex.Message);
-            }
+            DatosAtencion.IngresarAtencion(codigoAtencion, fecha, tipoConsulta, paciente, medico);
         }
+
+
 
         public CD_Atencion.Atencion ActualizarAtencion(int codigo, DateTime fecha, string TipoConsulta, Pacientes paciente, Medicos medico)
         {

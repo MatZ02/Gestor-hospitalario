@@ -38,24 +38,34 @@ namespace ClassLibrary1
             }
         }
 
-        public void IngresarAtencion(int codigo, DateTime fecha, string TipoConsulta, Pacientes paciente, Medicos medico)
+        public void IngresarAtencion(int codigoAtencion, DateTime fecha, string tipoConsulta, CD_Pacientes.Pacientes paciente, CD_Medicos.Medicos medico)
         {
-            using (var conexion = new CD_Conexion().AbrirConexion())
+            try
             {
-                try
+                using (MySqlConnection conexion = Conexion.AbrirConexion())
                 {
-                    sql = "insert into Atencion values(" + codigo + "," + fecha + "," + TipoConsulta + "," + paciente + "," + medico + ")";
-                    comando = new MySqlCommand(sql);
-                    comando.Connection = Conexion.AbrirConexion();
-                    comando.ExecuteNonQuery();
-                    Conexion.CerrarConexion();
-                }
-                catch (Exception ex)
-                {
+                    string sql = "INSERT INTO Atencion (CodigoAtencion, Fecha, TipoConsulta, CodigoPaciente, CodigoMedico) " +
+                                 "VALUES (@CodigoAtencion, @Fecha, @TipoConsulta, @CodigoPaciente, @CodigoMedico)";
 
+                    using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@CodigoAtencion", codigoAtencion);
+                        comando.Parameters.AddWithValue("@Fecha", fecha);
+                        comando.Parameters.AddWithValue("@TipoConsulta", tipoConsulta);
+                        comando.Parameters.AddWithValue("@CodigoPaciente", paciente.Codigo);
+                        comando.Parameters.AddWithValue("@CodigoMedico", medico.Codigo);
+
+                        comando.ExecuteNonQuery();
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al registrar la atención: " + ex.Message);
+            }
         }
+
+
         public Atencion BuscarAtencion(int codigoAtencion)
         {
             using (var conexion = new CD_Conexion().AbrirConexion())

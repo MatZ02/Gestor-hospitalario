@@ -18,7 +18,6 @@ namespace CN_Medicos
             public string Eps { get; set; }
         }
 
-
         public CD_Pacientes.Pacientes BuscarPaciente(int codigoPaciente)
         {
             CD_Pacientes.Pacientes paciente = DatosPacientes.BuscarPacientePorCodigo(codigoPaciente);
@@ -50,14 +49,10 @@ namespace CN_Medicos
                 throw new Exception("Error al actualizar paciente: " + ex.Message);
             }
         }
-        public CD_Pacientes.Pacientes EliminarPaciente(int codigo)
+        public void EliminarPaciente(int codigoPaciente)
         {
-            DatosPacientes.EliminarPacientes(codigo);
-            CD_Pacientes.Pacientes paciente = new CD_Pacientes.Pacientes
-            {
-                Codigo = codigo
-            };
-            return paciente;
+            CD_Pacientes datosPacientes = new CD_Pacientes();
+            datosPacientes.EliminarPacientes(codigoPaciente);
         }
 
         public List<CD_Pacientes.Pacientes> ListarPacientes()

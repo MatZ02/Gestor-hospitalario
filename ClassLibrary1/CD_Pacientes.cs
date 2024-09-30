@@ -1,7 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using static ClassLibrary1.CD_Pacientes;
 
 namespace ClassLibrary1
 {
@@ -42,7 +41,7 @@ namespace ClassLibrary1
             }
             catch (Exception ex)
             {
-                // Manejo de errores
+
                 throw new Exception("Error al ingresar paciente: " + ex.Message);
             }
             finally
@@ -85,19 +84,20 @@ namespace ClassLibrary1
             return paciente;
         }
 
-        public void EliminarPacientes(int codigoPaciente)
+        public void EliminarPacientes(int codigo)
         {
             try
             {
-                sql = "delete from pacientes where CodigoPaciente = " + codigoPaciente;
-                comando = new MySqlCommand(sql);
-                comando.Connection = Conexion.AbrirConexion();
+                MySqlConnection conexion = Conexion.AbrirConexion();
+                string sql = "DELETE FROM Pacientes WHERE CodigoPaciente = @CodigoPaciente";
+                MySqlCommand comando = new MySqlCommand(sql, conexion);
+                comando.Parameters.AddWithValue("@CodigoPaciente", codigo);
                 comando.ExecuteNonQuery();
                 Conexion.CerrarConexion();
             }
             catch (Exception ex)
             {
-
+                throw new Exception("Error al eliminar el paciente: " + ex.Message);
             }
         }
         public void ActualizarPacientes(int codigo, string nombre, string apellido, int edad, string genero, string eps)

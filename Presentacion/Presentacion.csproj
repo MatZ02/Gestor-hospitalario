@@ -104,6 +104,12 @@
     <Compile Include="ActualizarPacientes.Designer.cs">
       <DependentUpon>ActualizarPacientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="EliminarPaciente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EliminarPaciente.Designer.cs">
+      <DependentUpon>EliminarPaciente.cs</DependentUpon>
+    </Compile>
     <Compile Include="IngresarPacientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +124,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VistaAtencion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaAtencion.Designer.cs">
+      <DependentUpon>VistaAtencion.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaPacientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +138,9 @@
     </Compile>
     <EmbeddedResource Include="ActualizarPacientes.resx">
       <DependentUpon>ActualizarPacientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EliminarPaciente.resx">
+      <DependentUpon>EliminarPaciente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IngresarPacientes.resx">
       <DependentUpon>IngresarPacientes.cs</DependentUpon>
@@ -142,6 +157,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="VistaAtencion.resx">
+      <DependentUpon>VistaAtencion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaPacientes.resx">
       <DependentUpon>VistaPacientes.cs</DependentUpon>
     </EmbeddedResource>
